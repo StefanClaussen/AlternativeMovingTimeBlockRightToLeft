@@ -27,6 +27,10 @@
     blockOfTime = [[UIView alloc] initWithFrame:CGRectMake(200, 100, 100, 100)];
     [blockOfTime setBackgroundColor:[UIColor redColor]];
     [self.view addSubview:blockOfTime];
+    
+    NSLog(@"%@",[self currentTimeAsAString]);
+    NSLog(@"%@",[self pomodoroFinishTime]);
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,6 +64,21 @@
     }
 }
 
+#pragma -mark - Figuring out the current time
 
+- (NSString *)currentTimeAsAString
+{
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"HH:mm:ss"];
+    return [DateFormatter stringFromDate:[NSDate date]];
+}
+
+- (NSString *)pomodoroFinishTime
+{
+    NSDate *completionTime = [[NSDate date] dateByAddingTimeInterval:25*60];
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"HH:mm:ss"];
+    return [DateFormatter stringFromDate:completionTime];
+}
 
 @end
